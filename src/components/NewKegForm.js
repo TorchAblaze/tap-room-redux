@@ -17,25 +17,38 @@ function NewKegForm(props) {
   return (
     <React.Fragment>
       <form onSubmit={handleNewKegFromSubmission}>
-        <input type="text" name="name" placeholder="Keg Name" />
-        <input type="text" name="brand" placeholder="Keg Brand" />
+        <input type="text" name="name" placeholder="Keg Name" required />
+        <br />
+        <br />
+        <input type="text" name="brand" placeholder="Keg Brand" required />
+        <br />
+        <br />
         <input
           type="number"
           name="price"
           placeholder="Keg price per pint"
           min="0"
+          required
         />
+        <br />
+        <br />
         <input
           type="number"
           name="pintsLeft"
           placeholder="Pint amount in stock"
           min="0"
+          required
         />
+        <br />
+        <br />
         <input
           type="number"
           name="alcoholContent"
           placeholder="Alcohol by volume"
+          required
         />
+        <br />
+        <br />
         <button type="submit">Add Keg</button>
       </form>
     </React.Fragment>
