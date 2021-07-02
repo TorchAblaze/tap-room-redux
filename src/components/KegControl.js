@@ -35,7 +35,7 @@ class KegControl extends React.Component {
     const selectedKeg = this.state.fullKegMenu.filter(
       (keg) => keg.id === id
     )[0];
-    this.setState({ selectedKey: selectedKeg });
+    this.setState({ selectedKeg: selectedKeg });
   };
 
   render() {
@@ -57,7 +57,7 @@ class KegControl extends React.Component {
           onKegSelection={this.handleChangingSelectedKeg}
         />
       );
-      buttonText = <button onClick={this.handleClick}>Add Keg</button>;
+      buttonText = "Add Keg";
     }
     return (
       <React.Fragment>
