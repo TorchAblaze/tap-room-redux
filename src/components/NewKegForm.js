@@ -27,7 +27,8 @@ function NewKegForm(props) {
           type="number"
           name="price"
           placeholder="Keg price per pint"
-          min="0"
+          min="0.00"
+          step="0.01"
           required
         />
         <br />
@@ -45,6 +46,7 @@ function NewKegForm(props) {
           type="number"
           name="alcoholContent"
           placeholder="Alcohol by volume"
+          step="0.01"
           required
         />
         <br />
