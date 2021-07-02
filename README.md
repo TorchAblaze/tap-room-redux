@@ -1,3 +1,17 @@
+# Project Name
+
+#### _Keg tracking application, 7/2/2021_
+
+#### By _**Tiffany Greathead**_
+
+## Description
+
+Description.
+
+## Component Tree
+
+<img src="tap-room-diagram.png" alt="diagram of React component tree"/>
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
