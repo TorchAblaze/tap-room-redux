@@ -10,7 +10,7 @@ Description.
 
 ## Component Tree
 
-<img src="tap-room-diagram.png" alt="diagram of React component tree"/>
+<img src="./src/img/tap-room-diagram.png" alt="diagram of React component tree"/>
 
 # Getting Started with Create React App
 
