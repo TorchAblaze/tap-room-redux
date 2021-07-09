@@ -38,11 +38,21 @@ class KegControl extends React.Component {
     this.setState({ selectedKeg: selectedKeg });
   };
 
+  handleDeletingKeg = (id) => {
+    const newFullKegMenu = this.state.fullKegMenu.filter(
+      (keg) => keg.id !== id
+    );
+    this.setState({
+      fullKegMenu: newFullKegMenu,
+      selectedKeg: null,
+    });
+  };
+
   handleSellPint = (id) => {
     const selectedKeg = this.state.fullKegMenu.filter(
       (keg) => keg.id === id
     )[0];
-    if (selectedKeg.pintsLeft > 0) {
+    if (selectedKeg.pintsLeft > 1) {
       selectedKeg.pintsLeft -= 1;
     } else {
       selectedKeg.pintsLeft = "Out of Stock";
@@ -58,7 +68,8 @@ class KegControl extends React.Component {
       currentlyVisibleState = (
         <KegDetail
           keg={this.state.selectedKeg}
-          onNewPintsLeft={this.handleSellPint}
+          onClickingSellPint={this.handleSellPint}
+          onClickingDelete={this.handleDeletingKeg}
         />
       );
       buttonText = "Return to Keg Menu";
