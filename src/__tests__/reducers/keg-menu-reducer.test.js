@@ -1,6 +1,25 @@
 import kegMenuReducer from "../../reducers/keg-menu-reducer";
 
 describe("kegMenuReducer", () => {
+  const currentState = {
+    1: {
+      name: "Rebel IPA",
+      brand: "Samuel Adams",
+      price: 16.0,
+      pintsLeft: 124,
+      alcoholContent: 6.5,
+      id: 1,
+    },
+    2: {
+      name: "Kitty Kat Blues",
+      brand: "Black Raven",
+      price: 19.0,
+      pintsLeft: 124,
+      alcoholContent: 5.5,
+      id: 2,
+    },
+  };
+
   let action;
   const kegData = {
     name: "Rebel IPA",
@@ -35,6 +54,23 @@ describe("kegMenuReducer", () => {
         pintsLeft: pintsLeft,
         alcoholContent: alcoholContent,
         id: id,
+      },
+    });
+  });
+
+  test("Should succesfully delete a keg", () => {
+    action = {
+      type: "DELETE_KEG",
+      id: 1,
+    };
+    expect(kegMenuReducer(currentState, action)).toEqual({
+      2: {
+        name: "Kitty Kat Blues",
+        brand: "Black Raven",
+        price: 19.0,
+        pintsLeft: 124,
+        alcoholContent: 5.5,
+        id: 2,
       },
     });
   });
