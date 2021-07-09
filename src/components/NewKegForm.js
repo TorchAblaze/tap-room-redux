@@ -39,6 +39,7 @@ function NewKegForm(props) {
           type="number"
           name="alcoholContent"
           placeholder="Alcohol by volume"
+          min="0.00"
           step="0.01"
           required
         />

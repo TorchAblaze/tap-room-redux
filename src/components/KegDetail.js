@@ -13,7 +13,7 @@ function KegDetail(props) {
       </h3>
       <p>Price per pint: ${keg.price}</p>
       <p>Alcohol content: {keg.alcoholContent}% ABV</p>
-      <p>Pints remaining {keg.pintsLeft}</p>
+      <p>Pints remaining: {keg.pintsLeft}</p>
       <button onClick={() => onNewPintsLeft(keg.id)}>Sell a pint</button>
       <hr />
     </React.Fragment>
