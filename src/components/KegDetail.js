@@ -15,6 +15,7 @@ function KegDetail(props) {
       <p>Alcohol content: {keg.alcoholContent}% ABV</p>
       <p>Pints remaining: {keg.pintsLeft}</p>
       <button onClick={() => onClickingSellPint(keg.id)}>Sell a pint</button>
+      <button onClick={props.onClickingEdit}>Update Keg Details</button>
       <button onClick={() => onClickingDelete(keg.id)}>
         Remove Keg from Menu
       </button>
@@ -26,6 +27,7 @@ function KegDetail(props) {
 KegDetail.propTypes = {
   keg: PropTypes.object,
   onClickingSellPint: PropTypes.func,
+  onClickingEdit: PropTypes.func,
   onClickingDelete: PropTypes.func,
 };
 
