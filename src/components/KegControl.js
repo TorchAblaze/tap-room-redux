@@ -3,13 +3,14 @@ import NewKegForm from "./NewKegForm";
 import KegMenu from "./KegMenu";
 import KegDetail from "./KegDetail";
 import EditKegForm from "./EditKegForm";
+import { connect } from "react-redux";
+import PropTypes from "prop-types";
 
 class KegControl extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       formVisibleOnPage: false,
-      fullKegMenu: [],
       selectedKeg: null,
       editing: false,
     };
@@ -30,14 +31,23 @@ class KegControl extends React.Component {
   };
 
   handleAddingNewKegToMenu = (newKeg) => {
-    const newFullKegMenu = this.state.fullKegMenu.concat(newKeg);
-    this.setState({ fullKegMenu: newFullKegMenu, formVisibleOnPage: false });
+    const { dispatch } = this.props;
+    const { id, name, brand, price, pintsLeft, alcholContent } = newKeg;
+    const action = {
+      type: "ADD_KEG",
+      id: id,
+      name: name,
+      brand: brand,
+      price: price,
+      pintsLeft: pintsLeft,
+      alcholContent: alcholContent,
+    };
+    dispatch(action);
+    this.setState({ formVisibleOnPage: false });
   };
 
   handleChangingSelectedKeg = (id) => {
-    const selectedKeg = this.state.fullKegMenu.filter(
-      (keg) => keg.id === id
-    )[0];
+    const selectedKeg = this.props.fullKegMenu[id];
     this.setState({ selectedKeg: selectedKeg });
   };
 
@@ -46,24 +56,32 @@ class KegControl extends React.Component {
   };
 
   handleEditingKegInMenu = (kegToEdit) => {
-    const editedFullKegMenu = this.state.fullKegMenu
-      .filter((keg) => keg.id !== this.state.selectedKeg.id)
-      .concat(kegToEdit);
+    const { dispatch } = this.props;
+    const { id, name, brand, price, pintsLeft, alcholContent } = kegToEdit;
+    const action = {
+      type: "ADD_KEG",
+      id: id,
+      name: name,
+      brand: brand,
+      price: price,
+      pintsLeft: pintsLeft,
+      alcholContent: alcholContent,
+    };
+    dispatch(action);
     this.setState({
-      fullKegMenu: editedFullKegMenu,
       editing: false,
       selectedKeg: null,
     });
   };
 
   handleDeletingKeg = (id) => {
-    const newFullKegMenu = this.state.fullKegMenu.filter(
-      (keg) => keg.id !== id
-    );
-    this.setState({
-      fullKegMenu: newFullKegMenu,
-      selectedKeg: null,
-    });
+    const { dispatch } = this.props;
+    const action = {
+      type: "DELETE_KEG",
+      id: id,
+    };
+    dispatch(action);
+    this.setState({ selectedKeg: null });
   };
 
   handleSellPint = (id) => {
@@ -107,7 +125,7 @@ class KegControl extends React.Component {
     } else {
       currentlyVisibleState = (
         <KegMenu
-          kegMenu={this.state.fullKegMenu}
+          kegMenu={this.props.fullKegMenu}
           onKegSelection={this.handleChangingSelectedKeg}
         />
       );
@@ -121,5 +139,17 @@ class KegControl extends React.Component {
     );
   }
 }
+
+KegControl.propTypes = {
+  fullKegMenu: PropTypes.object,
+};
+
+const mapStateToProps = (state) => {
+  return {
+    fullKegMenu: state,
+  };
+};
+
+KegControl = connect(mapStateToProps)(KegControl);
 
 export default KegControl;
